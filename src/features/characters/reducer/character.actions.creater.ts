@@ -5,3 +5,6 @@ import { charactersActions } from "./character.action.types";
 export const loadCreator = createAction<CharacterStructure[]>(
   charactersActions.load
 );
+export const updateCreator = createAction<CharacterStructure>(
+  charactersActions.update
+);

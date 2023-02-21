@@ -1,7 +1,7 @@
 import { CharacterStructure } from "../features/characters/models/character";
 import { CharacterApiRepo } from "./character.api.repo";
 
-const mockCharacters: CharacterStructure[] = [
+const mockCharacactersacters: CharacterStructure[] = [
   {
     name: "rey",
     family: "string",
@@ -27,29 +27,18 @@ const mockCharacters: CharacterStructure[] = [
   },
 ];
 
-describe("first", () => {
-  let repo: CharacterApiRepo;
-  beforeEach(() => {
-    repo = new CharacterApiRepo();
-  });
-  test("should first", () => {
-    repo.loadCharacter();
-    const result = repo.loadCharacter();
-
-    expect(result).toBe({});
+describe("Given a class a", () => {
+  describe("When create an object class a", () => {
+    const repo = new CharacterApiRepo();
   });
 });
+test("if not response throw an error", async () => {
+  global.fetch = jest.fn().mockResolvedValue({
+    ok: true,
 
-// describe("Load Character", () => {
-//   beforeEach(() => {
-
-//     }),
-//   }),
-//   test("then  should be able to call its method", async () => {
-//        global.fetch = jest.fn().mockResolvedValue({
-//          ok = true,
-//          json: jest
-//          .fn()
-//          .mockResolvedValue([{}]) as known as CharacterStructure),
-//        });
-// }),
+    json: jest.fn(),
+  });
+  const result = await CharacterApiRepo.loadCharacter();
+  expect(result).toEqual([]);
+  console.log(CharacterApiRepo.loadCharacter());
+});
