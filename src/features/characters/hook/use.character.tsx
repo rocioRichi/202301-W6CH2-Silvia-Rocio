@@ -1,7 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../core/store/store";
 import { useEffect } from "react";
-import { AppDispatch } from "../../../core/store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../core/store/store";
 import { CharacterApiRepo } from "../../../repo/character.api.repo";
 import { loadCreator } from "../reducer/character.actions.creater";
 
