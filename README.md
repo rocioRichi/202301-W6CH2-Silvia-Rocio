@@ -1,46 +1,97 @@
-# Getting Started with Create React App
+## Week 6 - Challenge 2
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+GoT DOM - React - Redux - Typescript
 
-## Available Scripts
+Crea un proyecto nuevo en React - Redux - TypeScrypt Reproduce el challenge Week 3 - Challenge 1
 
-In the project directory, you can run:
+    Utiliza el mismo modelo de datos
 
-### `npm start`
+Modelo de datos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+En el Challenge 1 de la semana 3 se planteaba un modelo de datos basado en la herencia a partir de una clase abstracta.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+En Juego de Tronos existen personajes. Todos esos personajes tienen la siguiente información:
 
-### `npm test`
+    Nombre
+    Familia a la que pertenece
+    Edad
+    Estado (vivo o muerto, aunque inicialmente todos están vivos)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Todos los personajes pueden realizar la acción de comunicar, pero cada tipo de personaje (no cada personaje) se comunica de un modo distinto. Nota: este método devuelve el string con la frase, no imprime por consola.
 
-### `npm run build`
+Todos los personajes pueden realizar la acción de morir, cambiándose su estado a muerto.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Todos los personajes pertenecen a la misma serie, "Juego de Tronos".
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Cada uno de esos personajes puede ser un rey, un luchador, un asesor, o un escudero.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    Un rey, además de la información que tiene por ser personaje, tiene la siguiente información:
+        Años de reinado
+        Cuando se comunica dice: "Vais a morir todos"
 
-### `npm run eject`
+    Un luchador, además de la información que tiene por ser personaje, tiene la siguiente información:
+        Arma que usa
+        Destreza (un valor entre 0 y 10)
+        Cuando se comunica dice: "Primero pego y luego pregunto"
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    Un asesor, además de la información que tiene por ser personaje, tiene la siguiente información:
+        Personaje al que asesora (que puede ser rey, luchador, asesor o escudero)
+        Cuando se comunica dice: "No sé por qué, pero creo que voy a morir pronto"
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    Un escudero, además de la información que tiene por ser personaje, tiene la siguiente información:
+        Personaje al que sirve (que sólo puede ser luchador)
+        Grado de servilismo (un valor entre 0 y 10)
+        Cuando se comunica dice: "Soy un loser"
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+En este challenge necesitaras un interface nuevo, que englobe todas las propiedades posibles de los diferentes tipos de personages (e.g. CharacterStructure)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+export type CharacterStructure = {
+name: string;
+family: string;
+age: number;
+isAlive: boolean;
+message: string;
+category: Category;
+kingdomYears?: number; // For King
+weapon?: string; // For Fighter
+skill?: number; // For Fighter
+chief?: CharacterStructure; // For Counselor
+submission?: number; // For Squire
+master?: CharacterStructure; // ForSquire
+};
 
-## Learn More
+type Category = 'king' | 'squire' | 'fighter' | 'counselor'
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Los métodos comunicar y morir han dado paso a propiedades isAlive y message, y toda la funcionalidad corresponde a los componentes de React
+Datos
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Crea un mock de datos con los siguientes personajes
+
+    Joffrey Baratheon (rey),
+    Jaime Lannister (luchador),
+    Daenerys Targaryen (luchadora),
+    Tyrion Lannister (asesor de Daenerys)
+    Bronn (escudero de Jaime)
+
+Añade un servicio repository que proporcione
+Interface
+
+Utiliza la maqueta original (HTML/CSS) o los componentes que creaste para realizar los componentes de React necesarios para que funcione la aplicación
+
+Haz que por cada personaje del array se muestre la ficha correspondiente en el navegador:
+
+    En el elemento con clase emoji tiene que aparecer uno de estos emojis dependiendo del tipo de personaje:
+        👑 🗡 🎓 🛡
+    Si el personaje está muerto, su foto debe aparecer cabeza abajo (haz el CSS necesario);
+    En la lista con clase metadata, haz que sólo aparezcan los li correspondientes al personaje.
+
+    Cuando el usuario haga clic en el botón "muere", tiene que cambiar el estado del personaje, y la interfaz debe reflejar el cambio.
+    Cuando el usuario haga clic en el botón "habla", el elemento con clase comunicaciones debe aparecer con el texto y la imagen correspondientes. Haz que este elemento comunicaciones tenga la clase on durante 2 segundos y luego se le quite.
+
+Testing
+
+    Testea todos los elementos
+
+Evolución
+
+Custom Hook + Redux Añadir control de errores
