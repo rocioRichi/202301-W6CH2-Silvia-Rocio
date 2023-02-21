@@ -1,6 +1,9 @@
 import { CharacterStructure } from "../features/characters/models/character";
 
 export class CharacterApiRepo {
+  static loadCharacter() {
+    throw new Error("Method not implemented.");
+  }
   url: string;
   constructor() {
     this.url = "http://localhost:5080/characters";
