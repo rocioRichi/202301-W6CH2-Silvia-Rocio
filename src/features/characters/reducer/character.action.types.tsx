@@ -1,4 +1,6 @@
 export const charActions = {
   load: "chars@load",
-  update: "chars@update",
+  kill: "chars@kill",
+  talk: "chars@talk",
 };
+//auqi el update es matar y falta el de hablar

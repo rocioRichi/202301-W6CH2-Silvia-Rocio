@@ -1,17 +1,11 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import { charsReducer } from "../../features/got.characters/reducer/chars.reducer";
+import { configureStore } from "@reduxjs/toolkit";
 
-export const store = configureStore({
+export const appStore = configureStore({
   reducer: {
-    characters: charsReducer,
+    chars: charsReducer,
   },
 });
 
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;
+export type AppDispatch = typeof appStore.dispatch;
+export type RootState = ReturnType<typeof appStore.getState>;
+///importar el reducer
