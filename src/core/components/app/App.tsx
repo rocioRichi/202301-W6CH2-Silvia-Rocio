@@ -4,8 +4,10 @@ import "./App.css";
 
 export function App() {
   return (
-    <div>
-      <h1>Juego de Tronos</h1>
+    <div className="App">
+      <header>
+        <h1>Juego de Tronos</h1>
+      </header>
     </div>
   );
 }
